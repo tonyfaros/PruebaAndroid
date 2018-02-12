@@ -22,13 +22,13 @@
         android:text="Boton 1" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSubir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button"
         android:layout_alignStart="@+id/button"
         android:layout_marginBottom="69dp"
-        android:text="Boton 2" />
+        android:text="Subir imagen" />
 
     <RadioButton
         android:id="@+id/radioButton"
