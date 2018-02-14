@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference mRootChild = mDatabaseReference.child("nombre");
 
+    
     private StorageReference mStorage;
 
     private TextView txtView1;
