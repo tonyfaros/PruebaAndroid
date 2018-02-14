@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     
     private StorageReference mStorage;
 
-    
     private TextView txtView1;
     private Button btnSubir;
     private static final int GALLERY_INTENT = 1;
