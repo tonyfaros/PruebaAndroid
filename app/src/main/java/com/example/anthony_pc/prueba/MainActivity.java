@@ -1,14 +1,18 @@
 package com.example.anthony_pc.prueba;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     
     private StorageReference mStorage;
-
+    private ImageView mImgView;
+    private ProgressDialog mProgressDialog;
     private TextView txtView1;
     private Button btnSubir;
     private static final int GALLERY_INTENT = 1;
@@ -40,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mStorage = FirebaseStorage.getInstance().getReference();
         txtView1 = (TextView) findViewById(R.id.txtView1);
-
+        mImgView = (ImageView) findViewById(R.id.imgView);
         btnSubir = (Button) findViewById(R.id.btnSubir);
+        mProgressDialog = new ProgressDialog(this);
 
         btnSubir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
 
+            mProgressDialog.setTitle("Subiendo...");
+            mProgressDialog.setMessage("Subiendo foto a firebase..");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+
             Uri uri = data.getData();
 
             StorageReference filePath = mStorage.child("fotos").child(uri.getLastPathSegment());
@@ -67,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    mProgressDialog.dismiss();
+                    Uri descargarFoto = taskSnapshot.getDownloadUrl();
+                    Glide.with(MainActivity.this)
+                            .load(descargarFoto)
+                            .fitCenter()
+                    .centerCrop().into(mImgView);
+
                     Toast.makeText(MainActivity.this, "Imagen cargada tuanis", Toast.LENGTH_SHORT).show();
                 }
             });
