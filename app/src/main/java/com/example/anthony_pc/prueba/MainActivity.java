@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                     Glide.with(MainActivity.this)
                             .load(descargarFoto)
                             .fitCenter()
-                    .centerCrop().into(mImgView);
+                            //.centerCrop()
+                            .into(mImgView);
 
                     Toast.makeText(MainActivity.this, "Imagen cargada tuanis", Toast.LENGTH_SHORT).show();
                 }
