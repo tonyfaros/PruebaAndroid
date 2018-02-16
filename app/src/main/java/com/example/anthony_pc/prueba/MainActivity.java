@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()!= null){
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
 
                 }else{
                     //Toast.makeText(MainActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();

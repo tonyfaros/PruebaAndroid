@@ -42,7 +42,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         mStorage = FirebaseStorage.getInstance().getReference();
         txtView1 = (TextView) findViewById(R.id.txtView1);
         mImgView = (ImageView) findViewById(R.id.imgView);

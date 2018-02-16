@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GitHub.iml" filepath="$PROJECT_DIR$/GitHub.iml" />
+      <module fileurl="file://C:\Users\Anthony-PC\AndroidStudioProjects\Prueba\GitHub.iml" filepath="C:\Users\Anthony-PC\AndroidStudioProjects\Prueba\GitHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/Prueba.iml" filepath="$PROJECT_DIR$/Prueba.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
