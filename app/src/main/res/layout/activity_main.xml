@@ -6,30 +6,35 @@
     android:layout_height="match_parent"
     tools:context="com.example.anthony_pc.prueba.MainActivity">
 
-    <TextView
-        android:id="@+id/txtView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="125dp"
-        android:text="nope" />
 
-    <Button
-        android:id="@+id/btnSubir"
+    <EditText
+        android:id="@+id/txtCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/button"
-        android:text="Subir imagen" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:ems="10"
+        android:hint="Correo"
+        android:inputType="textEmailAddress" />
 
-    <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="77dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+    <EditText
+        android:id="@+id/txtPassw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtCorreo"
+        android:layout_below="@+id/txtCorreo"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
 
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassw"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:text="Ingresar" />
 </RelativeLayout>
