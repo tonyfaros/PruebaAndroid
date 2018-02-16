@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+       /* mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()!= null){
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(MainActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
                 }
             }
-        };
+        };*/
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     private void loginUserUnkn() {
         String email = txtCorreo.getText().toString();
         String password = txtPassword.getText().toString();
+        Log.d("user",email);
+        Log.d("pass",password);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -100,11 +102,15 @@ public class MainActivity extends AppCompatActivity {
     private void loginUser() {
         String email = txtCorreo.getText().toString();
         String password = txtPassword.getText().toString();
+        Log.d("user",email);
+        Log.d("pass",password);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Authentication success.",
+                                    Toast.LENGTH_SHORT).show();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
