@@ -33,27 +33,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnIngresar = (Button) findViewById(R.id.btnIngresar);
+
         txtCorreo = (EditText) findViewById(R.id.txtCorreo);
         txtPassword = (EditText) findViewById(R.id.txtPassw);
 
         mAuth = FirebaseAuth.getInstance();
 
-       /* mAuthListener = new FirebaseAuth.AuthStateListener() {
+        btnIngresar = (Button) findViewById(R.id.btnIngresar);
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()!= null){
-                    startActivity(new Intent(MainActivity.this,Main2Activity.class));
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
 
                 }else{
                     //Toast.makeText(MainActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
                 }
             }
-        };*/
+        };
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 loginUser();
             }
         });
@@ -66,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
-
+/*
     private void loginUserUnkn() {
         String email = txtCorreo.getText().toString();
         String password = txtPassword.getText().toString();
@@ -98,30 +101,37 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-
+*/
     private void loginUser() {
         String email = txtCorreo.getText().toString();
         String password = txtPassword.getText().toString();
+
         Log.d("user",email);
         Log.d("pass",password);
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                        if (!task.isSuccessful()) {
+                            /*
                             Toast.makeText(MainActivity.this, "Authentication success.",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_SHORT).show();*/
+
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
+                            Log.d(TAG, "signInWithEmail:success",task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                            //FirebaseUser user = mAuth.getCurrentUser();
+                            //updateUI(user);
+                        } /*else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
+                            //updateUI(null);
+                        }*/
 
                         // ...
                     }
